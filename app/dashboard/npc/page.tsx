@@ -12,14 +12,11 @@ import React from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import Image from "next/image";
-import { NpcModel } from "@/models/npc";
 
 const NpcMainPage = async () => {
-  // const data = await getNPCs();
+  const data = await getNPCs();
 
-  // data.sort((a, b) => a.name.localeCompare(b.name));
-
-  const data: NpcModel[] = [];
+  data.sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <main>
@@ -58,12 +55,9 @@ const NpcMainPage = async () => {
               />
             </CardMedia>
             <CardContent>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-              >
+              <div style={{ fontSize: 14, color: "rgba(255,255,255, 0.7)" }}>
                 {npc.notes}
-              </Typography>
+              </div>
             </CardContent>
             <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">

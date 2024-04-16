@@ -5,7 +5,7 @@ import HeroItem from "./components/common/hero-item";
 const DashboardPage = async () => {
   return (
     <>
-      <h3 style={{ textAlign: "center", marginBottom: "48px" }}>
+      <h3 style={{ textAlign: "center", marginBottom: "48px", fontSize: 32 }}>
         Вітаємо в кампанії &quot;Справи баронські&quot;!
       </h3>
 
@@ -24,6 +24,7 @@ const DashboardPage = async () => {
             textAlign: "center",
             marginBottom: "48px",
             marginTop: "72px",
+            fontSize: "24px",
           }}
         >
           Знайомтеся з нашими персонажами

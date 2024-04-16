@@ -1,5 +1,4 @@
 import { FC } from "react";
-// import Typography from "@mui/material/Typography";
 import type { HeroData } from "@/dashboard/hero-data";
 import Image from "next/image";
 

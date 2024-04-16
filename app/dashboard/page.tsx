@@ -1,35 +1,25 @@
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import Image from "next/image";
-import React from "react";
 import { HERO_DATA } from "./hero-data";
 import HeroItem from "./components/common/hero-item";
 
 const DashboardPage = async () => {
   return (
     <>
-      <Typography
-        variant="h3"
-        style={{ textAlign: "center", marginBottom: "48px" }}
-      >
+      <h3 style={{ textAlign: "center", marginBottom: "48px" }}>
         Вітаємо в кампанії &quot;Справи баронські&quot;!
-      </Typography>
+      </h3>
 
-      <Box
-        component="div"
-        style={{ width: "100%", display: "flex", justifyContent: "center" }}
-      >
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <Image
           src={"/images/campaing_image.jpg"}
           alt={"Campaing image"}
           width={500}
           height={500}
         />
-      </Box>
+      </div>
 
       <section>
-        <Typography
-          variant="h4"
+        <h4
           style={{
             textAlign: "center",
             marginBottom: "48px",
@@ -37,12 +27,9 @@ const DashboardPage = async () => {
           }}
         >
           Знайомтеся з нашими персонажами
-        </Typography>
+        </h4>
 
-        <Box
-          component="div"
-          style={{ width: "60%", margin: "0 auto" }}
-        >
+        <div style={{ width: "70%", margin: "0 auto" }}>
           {HERO_DATA.map((hero, idx) => {
             return (
               <HeroItem
@@ -52,7 +39,7 @@ const DashboardPage = async () => {
               />
             );
           })}
-        </Box>
+        </div>
       </section>
     </>
   );

@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { Box, Typography } from "@mui/material";
-import { HeroData } from "@/dashboard/hero-data";
+import { FC } from "react";
+// import Typography from "@mui/material/Typography";
+import type { HeroData } from "@/dashboard/hero-data";
 import Image from "next/image";
 
 export type HeroItemProps = {
@@ -10,13 +10,15 @@ export type HeroItemProps = {
 
 const HeroItem: FC<HeroItemProps> = ({ direction = "row", hero }) => {
   return (
-    <Box
+    <div
       key={hero.name}
       style={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         flexDirection: direction,
+        gap: "40px",
+        marginBottom: "48px",
       }}
     >
       <Image
@@ -25,20 +27,23 @@ const HeroItem: FC<HeroItemProps> = ({ direction = "row", hero }) => {
         width={300}
         height={300}
       />
-      <Box style={{ maxWidth: 400 }}>
-        <Typography variant="h5">{`${hero.name} (${hero.realname})`}</Typography>
-        <Typography
-          variant="caption"
-          display="block"
-          gutterBottom
-          color="GrayText"
+      <div style={{ maxWidth: 400, color: "#FFFFFF" }}>
+        <h5
+          style={{ marginBottom: 4, fontSize: 20 }}
+        >{`${hero.name} (${hero.realname})`}</h5>
+        <div
+          style={{
+            color: "rgba(255, 255, 255, 0.7)",
+            fontSize: 13,
+            marginBottom: 8,
+          }}
         >
           {hero.race}
-        </Typography>
+        </div>
 
-        <Typography variant="body1">{hero.description}</Typography>
-      </Box>
-    </Box>
+        <div>{hero.description}</div>
+      </div>
+    </div>
   );
 };
 

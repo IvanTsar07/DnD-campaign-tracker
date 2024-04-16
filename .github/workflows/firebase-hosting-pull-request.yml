@@ -12,6 +12,17 @@ jobs:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
     runs-on: ubuntu-latest
     steps:
+      - name: "Create env file"
+        run: |
+          touch .env
+          echo NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyBgRhUKHeaGZGft9AjDtZzuoBk5qKDrPO8
+          echo NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=dnd-track-app.firebaseapp.com
+          echo NEXT_PUBLIC_FIREBASE_PROJECT_ID=dnd-track-app
+          echo NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=dnd-track-app.appspot.com
+          echo NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=595283181889
+          echo NEXT_PUBLIC_FIREBASE_APP_ID=1:595283181889:web:76939154926170a32a61c0
+          echo NEXT_PUBLIC_FIREBASE_DATABASE_URL=https://dnd-track-app-default-rtdb.europe-west1.firebasedatabase.app
+          cat .env
       - uses: actions/checkout@v4
       - run: (npm install && npm run build)
       - uses: FirebaseExtended/action-hosting-deploy@v0

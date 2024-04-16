@@ -11,7 +11,7 @@ import React, { FC } from "react";
 export type DrawerItemProps = {
   text: string;
   open: boolean;
-  icon: React.ReactNode | React.ReactElement;
+  icon: React.ReactNode | React.ReactElement | JSX.Element;
   link: string;
 };
 

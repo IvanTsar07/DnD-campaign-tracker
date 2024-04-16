@@ -1,30 +1,22 @@
 import { getNPCs } from "@/lib/firebase/firestore";
-import { ExpandMore } from "@mui/icons-material";
 import {
   Card,
   CardHeader,
-  Avatar,
   IconButton,
   CardMedia,
   CardContent,
   Typography,
   CardActions,
-  Collapse,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
 import React from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
 
 const NpcMainPage = async () => {
   const data = await getNPCs();
 
   data.sort((a, b) => a.name.localeCompare(b.name));
-
-  console.log(data);
 
   return (
     <main>

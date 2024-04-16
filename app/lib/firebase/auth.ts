@@ -3,10 +3,12 @@ import {
   signInWithPopup,
   onAuthStateChanged as _onAuthStateChanged,
   signInWithEmailAndPassword as _signInWithEmailAndPassword,
+  User,
+  NextOrObserver,
 } from "firebase/auth";
 import { auth } from "./firebase";
 
-export function onAuthStateChanged(cb) {
+export function onAuthStateChanged(cb: (user: User | null) => void) {
   return _onAuthStateChanged(auth, cb);
 }
 

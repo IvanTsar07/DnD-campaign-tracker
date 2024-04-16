@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { User, getAuth, signInWithCustomToken } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp, getApps } from "firebase/app";
 import { getStorage } from "firebase/storage";
@@ -11,12 +11,13 @@ export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 export const storage = getStorage(firebaseApp);
 
-export async function getAuthenticatedAppForUser(session = null) {
+export async function getAuthenticatedAppForUser(session?: string) {
   if (typeof window !== "undefined") {
     // client
     console.log("client: ", firebaseApp);
+    const auth = getAuth(firebaseApp); // Declare the 'auth' variable here
 
-    return { app: firebaseApp, user: auth.currentUser.toJSON() };
+    return { app: firebaseApp, user: auth?.currentUser?.toJSON() };
   }
 
   const { initializeApp: initializeAdminApp, getApps: getAdminApps } =
@@ -69,7 +70,7 @@ export async function getAuthenticatedAppForUser(session = null) {
     await signInWithCustomToken(auth, customToken);
   }
   console.log("server: ", app);
-  return { app, currentUser: auth.currentUser };
+  return { app, currentUser: auth.currentUser as User | null };
 }
 
 async function getAppRouterSession() {
@@ -84,7 +85,7 @@ async function getAppRouterSession() {
   }
 }
 
-function initializeAuthenticatedApp(uid) {
+function initializeAuthenticatedApp(uid: string) {
   const random = Math.random().toString(36).split(".")[1];
   const appName = `authenticated-context:${uid}:${random}`;
 

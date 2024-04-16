@@ -1,9 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import classes from "./page.module.css";
-import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
+
+import { ArrowForward } from "@mui/icons-material";
+import { Box, Button, Typography } from "@mui/material";
+
+import classes from "./page.module.css";
 
 export default function Home() {
   const router = useRouter();
@@ -39,12 +42,24 @@ export default function Home() {
           >
             Login
           </Button>
+
           <Button
+            variant="contained"
+            endIcon={<ArrowForward />}
+            style={{ background: "#FFFFFF" }}
+            onClick={() => router.push("/dashboard")}
+          >
+            Go to Dashboard
+          </Button>
+
+          {/* TODO: make sign up page for registering  */}
+
+          {/* <Button
             variant="contained"
             onClick={() => router.push("/auth/signup")}
           >
             Sign up
-          </Button>
+          </Button> */}
         </section>
       </Box>
     </main>

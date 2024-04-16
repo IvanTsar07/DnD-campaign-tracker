@@ -8,21 +8,24 @@ function isTextValid(text: string) {
 }
 
 export async function signIn(
-  _prevState: { message: string | undefined },
-  formData: { get: (arg0: string) => any }
-) {
-  const email = formData.get("email");
-  const password = formData.get("password");
-
+  email: string,
+  password: string
+): Promise<{ result: null | string; error: string | null }> {
   if (!isTextValid(email) || !isTextValid(password)) {
     return {
-      message: "Invalid data. Please check your input and try again.",
+      result: null,
+      error: "Email and password are required",
     };
   }
 
   const { result, error } = await signInFirebase(email, password);
-  // console.log("RES >>> ", result);
-  // console.log("ERR >>> ", error);
+
+  if (error) {
+    return {
+      result: null,
+      error: error.message,
+    };
+  }
 
   redirect("/dashboard");
 }

@@ -4,7 +4,10 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./theme";
-import { AuthContextProvider } from "@/lib/providers/auth-provider";
+import { getAuthenticatedAppForUser } from "./lib/firebase/firebase";
+import Header from "./components/layout/header";
+import AuthContextProvider from "./lib/providers/auth-provider";
+// import { AuthContextProvider } from "@/lib/providers/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,19 +16,20 @@ export const metadata: Metadata = {
   description: "Track your DnD campaigns with ease.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { currentUser } = await getAuthenticatedAppForUser();
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
-            <AuthContextProvider>
-              <CssBaseline />
-
+            <CssBaseline />
+            <AuthContextProvider initialUser={currentUser}>
               {children}
             </AuthContextProvider>
           </ThemeProvider>

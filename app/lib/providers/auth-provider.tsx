@@ -9,37 +9,18 @@ import {
   useEffect,
 } from "react";
 import { onAuthStateChanged, getAuth, User } from "firebase/auth";
-import firebase_app from "@/lib/firebase/config";
-
-const auth = getAuth(firebase_app);
+import useAuth from "../hooks/useAuth";
+import { getAuthenticatedAppForUser } from "../firebase/firebase";
+import { useUserSession } from "./auth-context";
 
 export const AuthContext = createContext({});
 
 export const useAuthContext = () => useContext(AuthContext);
 
-export const AuthContextProvider: FC<{ children: ReactNode }> = ({
-  children,
-}) => {
-  const [user, setUser] = useState<User>();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user) {
-        //console.log("USER >>>>>> ", user);
-        setUser(user);
-      } else {
-        setUser(undefined);
-      }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
+export default function AuthContextProvider({ children, initialUser }) {
+  const user = useUserSession(initialUser);
 
   return (
-    <AuthContext.Provider value={{ user }}>
-      {loading ? <div>Loading...</div> : children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
   );
-};
+}

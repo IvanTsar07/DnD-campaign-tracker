@@ -14,14 +14,12 @@ export function useUserSession(initialUser) {
     });
 
     return () => unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     onAuthStateChanged(authUser => {
       if (user === undefined) return;
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return user;

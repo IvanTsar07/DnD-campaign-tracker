@@ -7,9 +7,15 @@ import { ArrowForward } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 
 import classes from "./page.module.css";
+import { useAuthContext } from "./lib/providers/auth-provider";
 
 export default function Home() {
   const router = useRouter();
+  const user = useAuthContext();
+
+  if (user) {
+    router.push("/dashboard");
+  }
 
   return (
     <main className={classes.main}>

@@ -1,4 +1,4 @@
-import Header from "@/components/layout/header";
+import LayoutGrid from "@/dashboard/components/layout";
 
 export default function DashboardLayout({
   children, // will be a page or nested layout
@@ -7,9 +7,7 @@ export default function DashboardLayout({
 }) {
   return (
     <section>
-      <Header />
-
-      {children}
+      <LayoutGrid>{children}</LayoutGrid>
     </section>
   );
 }

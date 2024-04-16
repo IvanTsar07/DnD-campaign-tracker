@@ -5,7 +5,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./theme";
 import { getAuthenticatedAppForUser } from "./lib/firebase/firebase";
-import Header from "./components/layout/header";
+import Header from "./dashboard/components/layout/header";
 import AuthContextProvider from "./lib/providers/auth-provider";
 // import { AuthContextProvider } from "@/lib/providers/auth-provider";
 

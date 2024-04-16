@@ -1,8 +1,9 @@
 import { Theme, CSSObject, styled } from "@mui/material/styles";
-import { drawerWidth } from "./constants";
 import MuiDrawer from "@mui/material/Drawer";
 
-export const openedMixin = (theme: Theme): CSSObject => ({
+import { drawerWidth } from "./constants";
+
+const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
@@ -11,7 +12,7 @@ export const openedMixin = (theme: Theme): CSSObject => ({
   overflowX: "hidden",
 });
 
-export const closedMixin = (theme: Theme): CSSObject => ({
+const closedMixin = (theme: Theme): CSSObject => ({
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -23,7 +24,7 @@ export const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-export const DrawerHeader = styled("div")(({ theme }) => ({
+const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-end",
@@ -32,7 +33,7 @@ export const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export const Drawer = styled(MuiDrawer, {
+const Drawer = styled(MuiDrawer, {
   shouldForwardProp: prop => prop !== "open",
 })(({ theme, open }) => ({
   width: drawerWidth,
@@ -48,3 +49,5 @@ export const Drawer = styled(MuiDrawer, {
     "& .MuiDrawer-paper": closedMixin(theme),
   }),
 }));
+
+export { openedMixin, closedMixin, DrawerHeader, Drawer };

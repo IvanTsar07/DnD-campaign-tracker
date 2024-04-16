@@ -1,7 +1,5 @@
 "use client";
 
-import { signInWithGoogle, signOut } from "@/lib/firebase/auth";
-import { useUserSession } from "@/lib/providers/auth-context";
 import { useAuthContext } from "@/lib/providers/auth-provider";
 import { Toolbar, IconButton, Typography, styled } from "@mui/material";
 import { type FC, useState } from "react";

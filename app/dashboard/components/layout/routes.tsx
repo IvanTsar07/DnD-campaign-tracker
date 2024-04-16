@@ -7,7 +7,7 @@ import {
   PersonAdd,
 } from "@mui/icons-material";
 
-export const routes = [
+const routes = [
   {
     path: "/dashboard",
     title: "Dashboard",
@@ -35,10 +35,12 @@ export const routes = [
   },
 ];
 
-export const adminRoutes = [
+const adminRoutes = [
   {
     path: "/admin",
     title: "Admin panel",
     icon: <AdminPanelSettings />,
   },
 ];
+
+export { routes, adminRoutes };

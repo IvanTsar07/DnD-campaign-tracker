@@ -4,8 +4,9 @@ import * as React from "react";
 
 import Box from "@mui/material/Box";
 import Header from "./header";
-import { DrawerHeader } from "../mixins";
 import SideDrawer from "./drawer";
+
+import { DrawerHeader } from "../mixins";
 
 const LayoutGrid: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [open, setOpen] = React.useState(false);

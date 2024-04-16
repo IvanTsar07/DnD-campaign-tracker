@@ -1,12 +1,11 @@
-export type HeroData = {
+type HeroData = {
   imageUrl: string;
   name: string;
   description: string;
   realname: string;
   race: string;
 };
-
-export const HERO_DATA: HeroData[] = [
+const HERO_DATA: HeroData[] = [
   {
     imageUrl: "/images/DM.jpg",
     name: "Dangen Master",
@@ -63,3 +62,6 @@ export const HERO_DATA: HeroData[] = [
     race: "Людина",
   },
 ];
+
+export { HERO_DATA };
+export type { HeroData };

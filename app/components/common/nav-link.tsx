@@ -1,9 +1,11 @@
 "use client";
 
+import type { FC, ReactNode } from "react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import classes from "./nav-link.module.css";
-import type { FC, ReactNode } from "react";
 
 type NavLinkProps = {
   href: string;

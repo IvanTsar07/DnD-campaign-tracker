@@ -5,7 +5,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import Link from "next/link";
 import React, { FC } from "react";
 
 export type DrawerItemProps = {

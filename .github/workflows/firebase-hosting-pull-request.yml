@@ -24,9 +24,9 @@ jobs:
           echo NEXT_PUBLIC_FIREBASE_DATABASE_URL=https://dnd-track-app-default-rtdb.europe-west1.firebasedatabase.app
           cat .env
       - uses: actions/checkout@v4
-      - run: (npm install && npm run build)
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_DND_TRACK_APP }}"
-          projectId: dnd-track-app
+      # - run: (npm install && npm run build)
+      # - uses: FirebaseExtended/action-hosting-deploy@v0
+      #   with:
+      #     repoToken: "${{ secrets.GITHUB_TOKEN }}"
+      #     firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_DND_TRACK_APP }}"
+      #     projectId: dnd-track-app

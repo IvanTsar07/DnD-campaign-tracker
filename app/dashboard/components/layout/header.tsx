@@ -1,3 +1,5 @@
+"use client";
+
 import { type FC } from "react";
 import { useAuthContext } from "@/lib/providers/auth-provider";
 import { Button, IconButton, Toolbar } from "@mui/material";
@@ -8,6 +10,8 @@ import { styled } from "@mui/material/styles";
 import { drawerWidth } from "../constants";
 import { usePathname } from "next/navigation";
 import { adminRoutes, routes } from "./routes";
+import { signOut } from "@/lib/firebase/auth";
+import { useRouter } from "next/navigation";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -35,6 +39,7 @@ const Header: FC<{
   open: boolean;
   handleDrawerOpen: () => void;
 }> = ({ open, handleDrawerOpen }) => {
+  const router = useRouter();
   const user = useAuthContext();
   const path = usePathname();
 
@@ -73,13 +78,30 @@ const Header: FC<{
           style={{
             display: "flex",
             justifyContent: "flex-end",
+            alignItems: "center",
             flexGrow: 1,
             flexDirection: "row",
           }}
         >
+          <div
+            style={{
+              fontSize: "12px",
+              marginRight: "16px",
+              color: "rgba(255, 255, 255, 0.7)",
+            }}
+          >
+            {user?.email}
+          </div>
           <Button
             type="button"
             variant="text"
+            onClick={() => {
+              if (user) {
+                signOut();
+              } else {
+                router.push("/auth/login");
+              }
+            }}
           >
             {user ? "Logout" : "Login"}
           </Button>

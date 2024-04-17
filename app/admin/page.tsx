@@ -1,3 +1,4 @@
+import ComingSoon from "@/components/common/coming-soon";
 import React from "react";
 
 const AdminPage = async () => {
@@ -13,9 +14,11 @@ const AdminPage = async () => {
 
   // const re = await response.json();
 
-  // console.log(re);
-
-  return <div>AdminPage</div>;
+  return (
+    <div>
+      <ComingSoon />
+    </div>
+  );
 };
 
 export default AdminPage;

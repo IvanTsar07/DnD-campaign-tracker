@@ -1,0 +1,35 @@
+.loading {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  animation: App-logo-pulse infinite 4s linear;
+}
+
+@keyframes App-logo-pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.1);
+  }
+
+  50% {
+    transform: scale(0.9);
+  }
+
+  75% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

@@ -3,9 +3,7 @@ import React, { FC } from "react";
 import classes from "./npc-item.module.css";
 import { NpcModel } from "@/models/npc";
 import Image from "next/image";
-import { IconButton } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
+import { Favorite, Share } from "@mui/icons-material";
 
 export type NpcItemProps = {
   npc: NpcModel;
@@ -34,12 +32,8 @@ const NpcItem: FC<NpcItemProps> = ({ npc }) => {
       </div>
       <div className={classes.content}>{npc.notes}</div>
       <div className={classes.footer}>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+        <Favorite />
+        <Share />
       </div>
     </div>
   );

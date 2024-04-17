@@ -8,7 +8,6 @@ const NpcMainPage = async () => {
 
   return (
     <main>
-      <h1>NPCs</h1>
       <section
         style={{
           display: "flex",

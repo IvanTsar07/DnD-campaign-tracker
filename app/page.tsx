@@ -8,14 +8,17 @@ import { Box, Button, Typography } from "@mui/material";
 
 import classes from "./page.module.css";
 import { useAuthContext } from "./lib/providers/auth-provider";
+import { useEffect } from "react";
 
 export default function Home() {
   const router = useRouter();
   const user = useAuthContext();
 
-  if (user) {
-    router.push("/dashboard");
-  }
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard");
+    }
+  }, [user, router]);
 
   return (
     <main className={classes.main}>

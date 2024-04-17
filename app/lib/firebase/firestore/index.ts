@@ -1,9 +1,4 @@
-import {
-  collection,
-  query,
-  getDocs,
-  addDoc,
-} from "firebase/firestore";
+import { collection, query, getDocs, addDoc } from "firebase/firestore";
 
 import { db } from "../firebase";
 import { NpcModel, NpcModelInput } from "@/models/npc";
@@ -60,4 +55,21 @@ export async function addImportedNPCs(npcList: NpcModelInput[]) {
   );
 
   console.log(results);
+}
+
+export async function createNPC(npc: NpcModelInput): Promise<string | null> {
+  try {
+    const docRef = await addDoc(collection(db, "npcs"), {
+      ...npc,
+      created_at: Date.now(),
+      modified_at: Date.now(),
+    });
+
+    return docRef.id;
+  } catch (e) {
+    console.log("There was an error adding the document");
+    console.error("Error adding document: ", e);
+
+    return null;
+  }
 }

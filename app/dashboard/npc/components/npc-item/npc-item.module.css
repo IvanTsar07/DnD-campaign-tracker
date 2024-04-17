@@ -26,6 +26,10 @@
   font-weight: 400;
   font-size: 1.5rem;
 }
+.title h5 a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
 
 .subtitle p {
   margin: 0;
@@ -54,5 +58,5 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 8px;
+  padding: 16px;
 }

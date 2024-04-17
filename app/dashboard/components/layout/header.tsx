@@ -1,11 +1,13 @@
 import { type FC } from "react";
 import { useAuthContext } from "@/lib/providers/auth-provider";
-import { IconButton, Toolbar } from "@mui/material";
+import { Button, IconButton, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
 import { drawerWidth } from "../constants";
+import { usePathname } from "next/navigation";
+import { adminRoutes, routes } from "./routes";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -34,6 +36,12 @@ const Header: FC<{
   handleDrawerOpen: () => void;
 }> = ({ open, handleDrawerOpen }) => {
   const user = useAuthContext();
+  const path = usePathname();
+
+  // TODO: fix for dynamic routes
+  const pageName = [...routes, ...adminRoutes].find(
+    route => route.path === path
+  )?.title;
 
   return (
     <AppBar
@@ -58,8 +66,24 @@ const Header: FC<{
           noWrap
           component="div"
         >
-          Dashboard
+          {pageName}
         </Typography>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            flexGrow: 1,
+            flexDirection: "row",
+          }}
+        >
+          <Button
+            type="button"
+            variant="text"
+          >
+            {user ? "Logout" : "Login"}
+          </Button>
+        </div>
       </Toolbar>
     </AppBar>
   );

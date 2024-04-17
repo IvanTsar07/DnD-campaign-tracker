@@ -2,6 +2,8 @@ import Image from "next/image";
 import { HERO_DATA } from "./hero-data";
 import HeroItem from "./components/common/hero-item";
 
+import classes from "./page.module.css";
+
 const DashboardPage = async () => {
   return (
     <>
@@ -18,7 +20,7 @@ const DashboardPage = async () => {
         />
       </div>
 
-      <section>
+      <section className={classes.campaignHeroesContainer}>
         <h4
           style={{
             textAlign: "center",
@@ -30,7 +32,7 @@ const DashboardPage = async () => {
           Знайомтеся з нашими персонажами
         </h4>
 
-        <div style={{ width: "70%", margin: "0 auto" }}>
+        <div style={{ margin: "0 auto" }}>
           {HERO_DATA.map((hero, idx) => {
             return (
               <HeroItem

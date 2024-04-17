@@ -19,11 +19,6 @@ const routes = [
     icon: <Group />,
   },
   {
-    path: "/dashboard/npc/create",
-    title: "Create NPC",
-    icon: <PersonAdd />,
-  },
-  {
     path: "/dashboard/loot",
     title: "Loot track",
     icon: <Gavel />,
@@ -40,6 +35,11 @@ const adminRoutes = [
     path: "/admin",
     title: "Admin panel",
     icon: <AdminPanelSettings />,
+  },
+  {
+    path: "/dashboard/npc/create",
+    title: "Create NPC",
+    icon: <PersonAdd />,
   },
 ];
 

@@ -4,7 +4,7 @@ import { type FC, type ReactNode, createContext, useContext } from "react";
 import { useUserSession } from "./auth-context";
 import { User } from "firebase/auth";
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext<User | null | undefined>(null);
 export const useAuthContext = () => useContext(AuthContext);
 
 export type AuthContexProviderProps = {
@@ -18,9 +18,7 @@ const AuthContextProvider: FC<AuthContexProviderProps> = ({
 }) => {
   const user = useUserSession(initialUser);
 
-  return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 };
 
 export default AuthContextProvider;

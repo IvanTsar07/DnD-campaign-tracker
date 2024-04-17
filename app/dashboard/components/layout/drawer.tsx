@@ -14,6 +14,7 @@ import { FC } from "react";
 import { useTheme } from "@mui/material/styles";
 import DrawerItem from "../common/drawer-item";
 import { adminRoutes, routes } from "./routes";
+import { useAuthContext } from "@/lib/providers/auth-provider";
 
 export type SideDrawerProps = {
   open: boolean;
@@ -22,6 +23,9 @@ export type SideDrawerProps = {
 
 const SideDrawer: FC<SideDrawerProps> = ({ open, handleDrawerClose }) => {
   const theme = useTheme();
+  const user = useAuthContext();
+
+  console.log(user);
 
   return (
     <Drawer
@@ -49,18 +53,22 @@ const SideDrawer: FC<SideDrawerProps> = ({ open, handleDrawerClose }) => {
           />
         ))}
       </List>
-      <Divider />
-      <List>
-        {adminRoutes.map(route => (
-          <DrawerItem
-            key={route.title}
-            text={route.title}
-            open={open}
-            icon={route.icon}
-            link={route.path}
-          />
-        ))}
-      </List>
+      {user && (
+        <>
+          <Divider />
+          <List>
+            {adminRoutes.map(route => (
+              <DrawerItem
+                key={route.title}
+                text={route.title}
+                open={open}
+                icon={route.icon}
+                link={route.path}
+              />
+            ))}
+          </List>
+        </>
+      )}
     </Drawer>
   );
 };

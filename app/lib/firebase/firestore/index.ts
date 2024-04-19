@@ -2,6 +2,7 @@ import { collection, query, getDocs, addDoc } from "firebase/firestore";
 
 import { db } from "../firebase";
 import { NpcModel, NpcModelInput } from "@/models/npc";
+import { ArtefactModel, ArtefactModelInput } from "@/models/artefact";
 
 // function applyQueryFilters(q, { category, city, price, sort }) {
 // 	if (category) {
@@ -72,4 +73,45 @@ export async function createNPC(npc: NpcModelInput): Promise<string | null> {
 
     return null;
   }
+}
+
+// TODO: add updateNPC function
+export async function updateNPC(npc: NpcModel): Promise<void> {}
+// TODO: add deleteNPC function
+export async function deleteNPC(npcId: string): Promise<void> {}
+
+export async function getArtefacts(filters = {}): Promise<ArtefactModel[]> {
+  let q = query(collection(db, "artefacts"));
+
+  // q = applyQueryFilters(q, filters);
+  const results = await getDocs(q);
+  return results.docs.map(doc => {
+    return {
+      id: doc.id,
+      ...(doc.data() as ArtefactModelInput),
+      createdAt: new Date(doc.data().created_at).toDateString(),
+      modifiedAt: new Date(doc.data().modified_at).toDateString(),
+    };
+  });
+}
+
+export async function addImportedArtefacts(artList: ArtefactModelInput[]) {
+  const results = await Promise.all(
+    artList.map(async artefact => {
+      try {
+        const docRef = await addDoc(collection(db, "artefacts"), {
+          ...artefact,
+          created_at: Date.now(),
+          modified_at: Date.now(),
+        });
+
+        return docRef.id;
+      } catch (err) {
+        console.error("Error adding document: ", err);
+        return null;
+      }
+    })
+  );
+
+  console.log(results);
 }

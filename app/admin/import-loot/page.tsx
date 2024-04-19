@@ -1,8 +1,8 @@
 "use client";
 
-import { addImportedNPCs } from "@/lib/firebase/firestore";
-import { readExcelFileWithNPCs } from "@/lib/xlsx";
-import { NpcModelInput } from "@/models/npc";
+import { addImportedArtefacts } from "@/lib/firebase/firestore";
+import { readExcelFileWithArtefacts } from "@/lib/xlsx";
+import { ArtefactModelInput } from "@/models/artefact";
 import { FileUpload } from "@mui/icons-material";
 import {
   Button,
@@ -13,9 +13,9 @@ import {
   Typography,
 } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
-import React, { ChangeEvent, useState } from "react";
+import { forwardRef, useState, type ChangeEvent } from "react";
 
-const Transition = React.forwardRef(function Transition(
+const Transition = forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
   },
@@ -30,23 +30,23 @@ const Transition = React.forwardRef(function Transition(
   );
 });
 
-const ImportNpcPage = () => {
-  const [npcList, setNpcList] = useState<NpcModelInput[]>([]);
-  const [showNPC, setShowNPC] = useState(false);
+const ImportLootPage = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [showArtefact, setShowArtefact] = useState(false);
+  const [artefactList, setArtefactList] = useState<ArtefactModelInput[]>([]);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.currentTarget.files?.[0];
     console.log(file);
 
     if (file) {
-      readExcelFileWithNPCs(file, rows => setNpcList(rows));
+      readExcelFileWithArtefacts(file, rows => setArtefactList(rows));
     }
   };
 
   const handleUpload = async () => {
-    await addImportedNPCs(npcList);
     setOpenModal(false);
+    await addImportedArtefacts(artefactList);
   };
 
   return (
@@ -64,17 +64,17 @@ const ImportNpcPage = () => {
         />
       </Button>
 
-      {npcList.length > 0 && (
+      {artefactList.length > 0 && (
         <>
-          <Typography variant="h4">NPCs</Typography>
+          <Typography variant="h4">Artefacts</Typography>
 
           <div style={{}}>
             <Button
               variant="contained"
               color="primary"
-              onClick={() => setShowNPC(!showNPC)}
+              onClick={() => setShowArtefact(!showArtefact)}
             >
-              {showNPC ? "Hide NPC" : "Show NPC"}
+              {showArtefact ? "Hide Artefacts" : "Show Artefacts"}
             </Button>
             <Button
               variant="contained"
@@ -86,7 +86,7 @@ const ImportNpcPage = () => {
             </Button>
           </div>
 
-          {showNPC && <pre>{JSON.stringify(npcList, null, 2)}</pre>}
+          {showArtefact && <pre>{JSON.stringify(artefactList, null, 2)}</pre>}
         </>
       )}
 
@@ -97,7 +97,7 @@ const ImportNpcPage = () => {
         onClose={() => setOpenModal(false)}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Do you want to upload all NPCs ?"}</DialogTitle>
+        <DialogTitle>{"Do you want to upload all Artefacts ?"}</DialogTitle>
         <DialogActions>
           <Button onClick={() => setOpenModal(false)}>Discard</Button>
           <Button onClick={() => handleUpload()}>Upload</Button>
@@ -107,4 +107,4 @@ const ImportNpcPage = () => {
   );
 };
 
-export default ImportNpcPage;
+export default ImportLootPage;

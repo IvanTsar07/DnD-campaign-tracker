@@ -4,6 +4,7 @@ import {
   Gavel,
   Group,
   Home,
+  LibraryAdd,
   PersonAdd,
 } from "@mui/icons-material";
 
@@ -40,6 +41,11 @@ const adminRoutes = [
     path: "/dashboard/npc/create",
     title: "Create NPC",
     icon: <PersonAdd />,
+  },
+  {
+    path: "/dashboard/loot/create",
+    title: "Create Artefact",
+    icon: <LibraryAdd />,
   },
 ];
 

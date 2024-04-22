@@ -1,0 +1,25 @@
+.createForm {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.actionContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 64px;
+}
+
+.checkbox {
+  border-color: rgba(255, 255, 255, 0.23);
+  margin-bottom: 16px;
+}

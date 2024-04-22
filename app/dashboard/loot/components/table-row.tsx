@@ -11,7 +11,10 @@ const Row: FC<{ row: ArtefactModel }> = ({ row }) => {
     <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       <TableCell align="center">
         {row.original_url && (
-          <Link href={row.original_url}>
+          <Link
+            href={row.original_url}
+            target="_blank"
+          >
             <OpenInNew
               color="primary"
               fontSize="small"

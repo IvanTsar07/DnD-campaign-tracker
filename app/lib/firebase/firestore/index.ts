@@ -95,6 +95,25 @@ export async function getArtefacts(filters = {}): Promise<ArtefactModel[]> {
   });
 }
 
+export async function createArtefact(
+  artefact: ArtefactModelInput
+): Promise<string | null> {
+  try {
+    const docRef = await addDoc(collection(db, "artefacts"), {
+      ...artefact,
+      created_at: Date.now(),
+      modified_at: Date.now(),
+    });
+
+    return docRef.id;
+  } catch (e) {
+    console.log("There was an error adding the document");
+    console.error("Error adding document: ", e);
+
+    return null;
+  }
+}
+
 export async function addImportedArtefacts(artList: ArtefactModelInput[]) {
   const results = await Promise.all(
     artList.map(async artefact => {

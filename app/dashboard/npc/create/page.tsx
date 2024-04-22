@@ -173,19 +173,6 @@ const NpcCreationPage = () => {
           fullWidth
           className={classes.field}
         />
-        <TextField
-          id="relations"
-          label="Relations"
-          variant="outlined"
-          disabled={loading}
-          InputProps={{
-            ...register("relations", {}),
-          }}
-          error={Boolean(errors.relations)}
-          helperText={errors.relations ? "Invalid relations" : ""}
-          fullWidth
-          className={classes.field}
-        />
 
         <TextField
           id="status"

@@ -4,6 +4,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Tooltip,
 } from "@mui/material";
 import React, { FC } from "react";
 
@@ -17,33 +18,35 @@ export type DrawerItemProps = {
 const DrawerItem: FC<DrawerItemProps> = ({ text, open, icon, link }) => {
   return (
     <NavLink href={link}>
-      <ListItem
-        key={text}
-        disablePadding
-        sx={{ display: "block" }}
-      >
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            justifyContent: open ? "initial" : "center",
-            px: 2.5,
-          }}
+      <Tooltip title={text}>
+        <ListItem
+          key={text}
+          disablePadding
+          sx={{ display: "block" }}
         >
-          <ListItemIcon
+          <ListItemButton
             sx={{
-              minWidth: 0,
-              mr: open ? 3 : "auto",
-              justifyContent: "center",
+              minHeight: 48,
+              justifyContent: open ? "initial" : "center",
+              px: 2.5,
             }}
           >
-            {icon}
-          </ListItemIcon>
-          <ListItemText
-            primary={text}
-            sx={{ opacity: open ? 1 : 0 }}
-          />
-        </ListItemButton>
-      </ListItem>
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: open ? 3 : "auto",
+                justifyContent: "center",
+              }}
+            >
+              {icon}
+            </ListItemIcon>
+            <ListItemText
+              primary={text}
+              sx={{ opacity: open ? 1 : 0 }}
+            />
+          </ListItemButton>
+        </ListItem>
+      </Tooltip>
     </NavLink>
   );
 };

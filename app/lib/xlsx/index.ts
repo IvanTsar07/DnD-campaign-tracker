@@ -1,4 +1,4 @@
-import { ArtefactModelInput } from "@/models/artefact";
+import { ArtefactModelInput, Art, ArtefactModel } from "@/models/artefact";
 import { NpcModelInput } from "@/models/npc";
 import * as XLSX from "xlsx";
 
@@ -62,10 +62,8 @@ export function readExcelFileWithNPCs(
 
 export function readExcelFileWithArtefacts(
   file: Blob,
-  callback: (rows: ArtefactModelInput[]) => void
+  callback: (rows: Art[]) => void
 ) {
-  const rows: ArtefactModelInput[] = [];
-
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
 
@@ -83,9 +81,6 @@ export function readExcelFileWithArtefacts(
 
       wsJson = wsJson.filter(row => row.length > 0);
 
-      // console.log(worksheet);
-      console.log(wsJson);
-
       const columnToKeys: Record<number, string> = {
         0: "name",
         1: "original_url",
@@ -95,18 +90,12 @@ export function readExcelFileWithArtefacts(
         5: "owner",
       };
 
-      wsJson.forEach((row: string[], index) => {
-        if (index > 1 && row.length > 0) {
-          console.log(row);
-          let obj: ArtefactModelInput = {
-            name: "",
-            original_url: "",
-            short_description: "",
-            source: "",
-            tuning: false,
-            owner: "",
-          };
+      const excelJsonArray: Art[] = [];
 
+      wsJson.forEach((row: string[], index) => {
+        const excelJson: Record<string, unknown> = {};
+
+        if (index > 1 && row.length > 0) {
           row.forEach((value, i) => {
             let valueToPut: boolean | string | null = value;
 
@@ -115,16 +104,14 @@ export function readExcelFileWithArtefacts(
                 value === "ТАК" ? true : value === "НІ" ? false : null;
             }
 
-            obj[columnToKeys[i] as keyof ArtefactModelInput] = valueToPut;
+            excelJson[columnToKeys[i]] = valueToPut;
           });
 
-          rows.push(obj);
+          excelJsonArray.push(Art.fromJson(excelJson as ArtefactModel));
         }
       });
+
+      callback(excelJsonArray);
     }
-
-    console.log(rows);
-
-    callback(rows);
   };
 }

@@ -2,7 +2,7 @@
 
 import { addImportedArtefacts } from "@/lib/firebase/firestore";
 import { readExcelFileWithArtefacts } from "@/lib/xlsx";
-import { ArtefactModelInput } from "@/models/artefact";
+import { Art, ArtefactModelInput } from "@/models/artefact";
 import { FileUpload } from "@mui/icons-material";
 import {
   Button,
@@ -33,7 +33,7 @@ const Transition = forwardRef(function Transition(
 const ImportLootPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [showArtefact, setShowArtefact] = useState(false);
-  const [artefactList, setArtefactList] = useState<ArtefactModelInput[]>([]);
+  const [artefactList, setArtefactList] = useState<Art[]>([]);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.currentTarget.files?.[0];

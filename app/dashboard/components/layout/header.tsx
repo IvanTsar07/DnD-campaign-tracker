@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 import { adminRoutes, routes } from "./routes";
 import { signOut } from "@/lib/firebase/auth";
 import { useRouter } from "next/navigation";
-import { CustomThemeContext } from "@/theme";
+import { CustomThemeContext } from "@/lib/providers/theme-provider";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;

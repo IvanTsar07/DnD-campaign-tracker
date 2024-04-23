@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
-import { CustomThemeContextProvider } from "./theme";
 import { getAuthenticatedAppForUser } from "./lib/firebase/firebase";
 import AuthContextProvider from "./lib/providers/auth-provider";
+import CustomThemeContextProvider from "./lib/providers/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

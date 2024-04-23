@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useContext } from "react";
 
 import classes from "./page-logo.module.css";
-import { CustomThemeContext } from "@/theme";
+import { CustomThemeContext } from "@/lib/providers/theme-provider";
 
 const PageLogo = () => {
   const { currentTheme } = useContext(CustomThemeContext);

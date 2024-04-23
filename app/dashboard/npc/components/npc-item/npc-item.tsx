@@ -15,8 +15,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { CustomThemeContext } from "@/theme";
-
+import { CustomThemeContext } from "@/lib/providers/theme-provider";
 export type NpcItemProps = {
   npc: NpcModel;
 };

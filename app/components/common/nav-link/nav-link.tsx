@@ -24,6 +24,7 @@ const NavLink: FC<NavLinkProps> = ({ href, children }) => {
           ? `${classes.link} ${classes.active}`
           : classes.link
       }
+      style={{ textDecoration: "none" }}
     >
       <Typography variant="subtitle1"> {children}</Typography>
     </Link>

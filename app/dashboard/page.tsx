@@ -2,8 +2,8 @@ import Image from "next/image";
 // import { HERO_DATA } from "./hero-data";
 // import HeroItem from "./components/common/hero-item";
 
-// import classes from "./page.module.css";
-// import { Typography } from "@mui/material";
+import classes from "./page.module.css";
+import { Typography } from "@mui/material";
 
 const DashboardPage = () => {
   return (
@@ -20,7 +20,7 @@ const DashboardPage = () => {
           height={500}
         />
       </div>
-      {/* 
+
       <section className={classes.campaignHeroesContainer}>
         <Typography
           variant="h4"
@@ -34,7 +34,7 @@ const DashboardPage = () => {
           Знайомтеся з нашими персонажами
         </Typography>
 
-        <div style={{ margin: "0 auto" }}>
+        {/* <div style={{ margin: "0 auto" }}>
           {HERO_DATA.map((hero, idx) => {
             return (
               <HeroItem
@@ -44,8 +44,8 @@ const DashboardPage = () => {
               />
             );
           })}
-        </div>
-      </section> */}
+        </div> */}
+      </section>
     </>
   );
 };

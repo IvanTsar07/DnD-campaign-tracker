@@ -1,7 +1,7 @@
 import { getNPC } from "@/lib/firebase/firestore";
-import { Grid, Paper, Typography, styled } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import Image from "next/image";
-import { redirect, useSearchParams } from "next/navigation";
+import { redirect } from "next/navigation";
 import React, { FC } from "react";
 import { Item } from "../components/npn-details/grid-item/grid-item";
 import DetailsItem from "../components/npn-details/details-item/details-item";
@@ -14,12 +14,6 @@ type NpcDetailsPageProps = {
 const NpcDetailsPage: FC<NpcDetailsPageProps> = async ({ params }) => {
   const npcId = params.slug;
   const npc = await getNPC(npcId);
-
-  console.log(npc);
-
-  if (!npc) {
-    redirect("/not-foud");
-  }
 
   return (
     <>

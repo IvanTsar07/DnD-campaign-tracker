@@ -13,6 +13,7 @@ import { db } from "../firebase";
 import { NpcModel, NpcModelInput } from "@/models/npc";
 import { ArtefactModel, ArtefactModelInput } from "@/models/artefact";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 // function applyQueryFilters(q, { category, city, price, sort }) {
 // 	if (category) {
@@ -66,7 +67,7 @@ export async function addImportedNPCs(npcList: NpcModelInput[]) {
   );
 }
 
-export async function getNPC(npcId: string): Promise<NpcModel | null> {
+export async function getNPC(npcId: string): Promise<NpcModel> {
   const docRef = doc(db, "npcs", npcId);
 
   try {
@@ -75,7 +76,7 @@ export async function getNPC(npcId: string): Promise<NpcModel | null> {
     console.log(npc);
 
     if (!npc) {
-      return null;
+      redirect("/not-found");
     }
 
     return {
@@ -86,7 +87,7 @@ export async function getNPC(npcId: string): Promise<NpcModel | null> {
     };
   } catch (e) {
     console.error("Error getting document: ", e);
-    return null;
+    redirect("/not-found");
   }
 }
 

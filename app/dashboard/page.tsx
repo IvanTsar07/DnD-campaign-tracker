@@ -34,7 +34,7 @@ const DashboardPage = () => {
           Знайомтеся з нашими персонажами
         </Typography>
 
-        {/* <div style={{ margin: "0 auto" }}>
+        <div style={{ margin: "0 auto" }}>
           {HERO_DATA.map((hero, idx) => {
             return (
               <HeroItem
@@ -44,7 +44,7 @@ const DashboardPage = () => {
               />
             );
           })}
-        </div> */}
+        </div>
       </section>
     </>
   );

@@ -3,11 +3,9 @@ import NpcItem from "./components/npc-item/npc-item";
 import { NpcModel } from "@/models/npc";
 
 const NpcMainPage = async () => {
-  // const data = await getNPCs();
+  const data = await getNPCs();
 
-  // data.sort((a, b) => a.name.localeCompare(b.name));
-
-  const data: NpcModel[] = [];
+  data.sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <main>

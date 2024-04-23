@@ -1,4 +1,4 @@
-import NavLink from "@/components/common/nav-link";
+import NavLink from "@/components/common/nav-link/nav-link";
 import {
   ListItem,
   ListItemButton,

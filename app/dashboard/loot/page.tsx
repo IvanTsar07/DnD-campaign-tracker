@@ -13,7 +13,6 @@ import TableData from "./components/table-data";
 
 const LootPage = async () => {
   const data = await getArtefacts();
-  // data.sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <div>

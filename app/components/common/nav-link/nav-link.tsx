@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import classes from "./nav-link.module.css";
+import { Typography } from "@mui/material";
 
 type NavLinkProps = {
   href: string;
@@ -24,7 +25,7 @@ const NavLink: FC<NavLinkProps> = ({ href, children }) => {
           : classes.link
       }
     >
-      {children}
+      <Typography variant="subtitle1"> {children}</Typography>
     </Link>
   );
 };

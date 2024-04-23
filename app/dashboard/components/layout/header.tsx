@@ -1,6 +1,6 @@
 "use client";
 
-import { type FC } from "react";
+import { useContext, type FC } from "react";
 import { useAuthContext } from "@/lib/providers/auth-provider";
 import { Button, IconButton, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { adminRoutes, routes } from "./routes";
 import { signOut } from "@/lib/firebase/auth";
 import { useRouter } from "next/navigation";
+import { CustomThemeContext } from "@/theme";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -42,6 +43,7 @@ const Header: FC<{
   const router = useRouter();
   const user = useAuthContext();
   const path = usePathname();
+  const { themeSwitchHandler, currentTheme } = useContext(CustomThemeContext);
 
   // TODO: fix for dynamic routes
   const pageName = [...routes, ...adminRoutes].find(
@@ -52,6 +54,7 @@ const Header: FC<{
     <AppBar
       position="fixed"
       open={open}
+      color={currentTheme === "dark" ? "primary" : "info"}
     >
       <Toolbar>
         <IconButton
@@ -83,18 +86,19 @@ const Header: FC<{
             flexDirection: "row",
           }}
         >
-          <div
+          <Typography
+            variant="caption"
             style={{
               fontSize: "12px",
               marginRight: "16px",
-              color: "rgba(255, 255, 255, 0.7)",
             }}
           >
             {user?.email}
-          </div>
+          </Typography>
           <Button
             type="button"
             variant="text"
+            style={{ color: "#FFFFFF" }}
             onClick={() => {
               if (user) {
                 signOut();

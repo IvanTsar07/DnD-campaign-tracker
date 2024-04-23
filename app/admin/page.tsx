@@ -1,4 +1,4 @@
-import ComingSoon from "@/components/common/coming-soon";
+import ComingSoon from "@/components/common/coming-soon/coming-soon";
 import React from "react";
 
 const AdminPage = async () => {

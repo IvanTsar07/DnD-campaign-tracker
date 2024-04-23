@@ -3,6 +3,7 @@ import { HERO_DATA } from "./hero-data";
 import HeroItem from "./components/common/hero-item";
 
 import classes from "./page.module.css";
+import { Typography } from "@mui/material";
 
 const DashboardPage = async () => {
   return (
@@ -21,7 +22,8 @@ const DashboardPage = async () => {
       </div>
 
       <section className={classes.campaignHeroesContainer}>
-        <h4
+        <Typography
+          variant="h4"
           style={{
             textAlign: "center",
             marginBottom: "48px",
@@ -30,7 +32,7 @@ const DashboardPage = async () => {
           }}
         >
           Знайомтеся з нашими персонажами
-        </h4>
+        </Typography>
 
         <div style={{ margin: "0 auto" }}>
           {HERO_DATA.map((hero, idx) => {

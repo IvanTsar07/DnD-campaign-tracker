@@ -1,8 +1,11 @@
+"use server";
+
 import { collection, query, getDocs, addDoc } from "firebase/firestore";
 
 import { db } from "../firebase";
 import { NpcModel, NpcModelInput } from "@/models/npc";
 import { ArtefactModel, ArtefactModelInput } from "@/models/artefact";
+import { revalidatePath } from "next/cache";
 
 // function applyQueryFilters(q, { category, city, price, sort }) {
 // 	if (category) {
@@ -104,6 +107,8 @@ export async function createArtefact(
       created_at: Date.now(),
       modified_at: Date.now(),
     });
+
+    revalidatePath("/meals");
 
     return docRef.id;
   } catch (e) {

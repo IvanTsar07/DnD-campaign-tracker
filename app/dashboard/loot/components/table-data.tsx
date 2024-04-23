@@ -1,17 +1,19 @@
 "use client";
 
 import React, { FC, useMemo, useState } from "react";
-import { getArtefacts } from "@/lib/firebase/firestore";
 import {
   TableContainer,
   Paper,
   Table,
   TableBody,
   TablePagination,
+  TextField,
+  InputAdornment,
 } from "@mui/material";
 import Row from "./table-row";
 import TableHeadComponent from "./table-head";
 import { ArtefactModel } from "@/models/artefact";
+import { Search } from "@mui/icons-material";
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -55,6 +57,8 @@ const TableData: FC<{ data: ArtefactModel[] }> = ({ data }) => {
     "name" | "source" | "owner" | "tuning"
   >("name");
 
+  const [searchString, setSearchString] = useState("");
+
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -79,17 +83,37 @@ const TableData: FC<{ data: ArtefactModel[] }> = ({ data }) => {
     setOrderBy(property);
   };
 
-  const visibleRows = useMemo(
-    () =>
-      stableSort(data, getComparator(order, orderBy)).slice(
-        page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage
-      ),
-    [order, orderBy, page, rowsPerPage, data]
-  );
+  const visibleRows = useMemo(() => {
+    const filteredData = data.filter(artefact => {
+      return `${artefact.name}__${artefact.owner}`.includes(searchString);
+    });
+
+    return stableSort(filteredData, getComparator(order, orderBy)).slice(
+      page * rowsPerPage,
+      page * rowsPerPage + rowsPerPage
+    );
+  }, [order, orderBy, page, rowsPerPage, data, searchString]);
 
   return (
     <>
+      <div style={{ marginBottom: "24px", padding: "0px 24px" }}>
+        <TextField
+          id="serch-filed"
+          label="Search"
+          fullWidth
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            ),
+          }}
+          variant="standard"
+          value={searchString}
+          onChange={e => setSearchString(e.target.value)}
+        />
+      </div>
+
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHeadComponent

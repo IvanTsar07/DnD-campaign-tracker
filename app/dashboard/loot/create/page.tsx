@@ -8,6 +8,7 @@ import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { Art, ArtefactModelInput } from "@/models/artefact";
 import { createArtefact } from "@/lib/firebase/firestore";
 import { useRouter } from "next/navigation";
+import PageLogo from "@/components/common/page-logo/page-logo";
 
 type Inputs = {
   name: string;
@@ -59,13 +60,7 @@ const CreateArtefactPage = () => {
   };
   return (
     <section>
-      <Image
-        src="/images/logo.svg"
-        alt="DnD Tracker Logo"
-        width={200}
-        height={200}
-        className={classes.logo}
-      />
+      <PageLogo />
 
       <form
         onSubmit={handleSubmit(onSubmit)}

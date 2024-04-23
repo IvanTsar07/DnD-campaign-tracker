@@ -9,6 +9,7 @@ import { NpcModel, NpcModelInput } from "@/models/npc";
 import { createNPC } from "@/lib/firebase/firestore";
 import { useState } from "react";
 import { redirect } from "next/navigation";
+import PageLogo from "@/components/common/page-logo/page-logo";
 
 type Inputs = {
   name: string;
@@ -89,13 +90,7 @@ const NpcCreationPage = () => {
 
   return (
     <section>
-      <Image
-        src="/images/logo.svg"
-        alt="DnD Tracker Logo"
-        width={200}
-        height={200}
-        className={classes.logo}
-      />
+      <PageLogo />
 
       <form
         onSubmit={handleSubmit(onSubmit)}

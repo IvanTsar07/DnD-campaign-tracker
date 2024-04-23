@@ -1,6 +1,6 @@
 "use client";
 
-import { TableHead, TableRow, TableSortLabel } from "@mui/material";
+import { TableHead, TableRow, TableSortLabel, useTheme } from "@mui/material";
 import StyledTableCell from "./table-styled-cell";
 import React, { FC } from "react";
 
@@ -26,6 +26,8 @@ const TableHeadComponent: FC<TableHeadProps> = ({
   orderBy,
   rowCount,
 }) => {
+  const theme = useTheme();
+
   const createSortHandler =
     (property: "name" | "source" | "owner" | "tuning") =>
     (event: React.MouseEvent<unknown>) => {
@@ -42,7 +44,7 @@ const TableHeadComponent: FC<TableHeadProps> = ({
             direction={orderBy === "name" ? order : "desc"}
             onClick={createSortHandler("name")}
           >
-            {"Artefact"}
+            <span style={{ color: theme.palette.common.white }}>Artefact</span>
           </TableSortLabel>
         </StyledTableCell>
         <StyledTableCell align="right">Description</StyledTableCell>

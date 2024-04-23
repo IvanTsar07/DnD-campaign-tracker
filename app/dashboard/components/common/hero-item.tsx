@@ -1,6 +1,7 @@
 import { FC } from "react";
 import type { HeroData } from "@/dashboard/hero-data";
 import Image from "next/image";
+import { Typography } from "@mui/material";
 
 export type HeroItemProps = {
   direction: "row" | "row-reverse";
@@ -26,21 +27,21 @@ const HeroItem: FC<HeroItemProps> = ({ direction = "row", hero }) => {
         width={300}
         height={300}
       />
-      <div style={{ maxWidth: 400, color: "#FFFFFF" }}>
+      <div style={{ maxWidth: 400 }}>
         <h5
           style={{ marginBottom: 4, fontSize: 20 }}
         >{`${hero.name} (${hero.realname})`}</h5>
-        <div
+        <Typography
+          variant="subtitle1"
           style={{
-            color: "rgba(255, 255, 255, 0.7)",
             fontSize: 13,
             marginBottom: 8,
           }}
         >
           {hero.race}
-        </div>
+        </Typography>
 
-        <div>{hero.description}</div>
+        <Typography variant="body1">{hero.description}</Typography>
       </div>
     </div>
   );

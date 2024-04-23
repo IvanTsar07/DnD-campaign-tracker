@@ -3,7 +3,7 @@ import Image from "next/image";
 // import HeroItem from "./components/common/hero-item";
 
 import classes from "./page.module.css";
-import { Typography } from "@mui/material";
+//import { Typography } from "@mui/material";
 
 const DashboardPage = () => {
   return (
@@ -22,7 +22,7 @@ const DashboardPage = () => {
       </div>
 
       <section className={classes.campaignHeroesContainer}>
-        <Typography
+        {/* <Typography
           variant="h4"
           style={{
             textAlign: "center",
@@ -32,7 +32,7 @@ const DashboardPage = () => {
           }}
         >
           Знайомтеся з нашими персонажами
-        </Typography>
+        </Typography> */}
 
         {/* <div style={{ margin: "0 auto" }}>
           {HERO_DATA.map((hero, idx) => {

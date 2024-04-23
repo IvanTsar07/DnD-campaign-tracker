@@ -1,6 +1,13 @@
 "use server";
 
-import { collection, query, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  getDocs,
+  addDoc,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 
 import { db } from "../firebase";
 import { NpcModel, NpcModelInput } from "@/models/npc";
@@ -57,8 +64,30 @@ export async function addImportedNPCs(npcList: NpcModelInput[]) {
       }
     })
   );
+}
 
-  console.log(results);
+export async function getNPC(npcId: string): Promise<NpcModel | null> {
+  const docRef = doc(db, "npcs", npcId);
+
+  try {
+    const npc = await getDoc(docRef);
+
+    console.log(npc);
+
+    if (!npc) {
+      return null;
+    }
+
+    return {
+      id: npc.id,
+      ...(npc.data() as NpcModelInput),
+      createdAt: new Date(npc.data()!.created_at).toDateString(),
+      modifiedAt: new Date(npc.data()!.modified_at).toDateString(),
+    };
+  } catch (e) {
+    console.error("Error getting document: ", e);
+    return null;
+  }
 }
 
 export async function createNPC(npc: NpcModelInput): Promise<string | null> {

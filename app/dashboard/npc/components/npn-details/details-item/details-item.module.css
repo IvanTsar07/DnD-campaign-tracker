@@ -1,0 +1,7 @@
+.detailsItem {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 16px;
+}

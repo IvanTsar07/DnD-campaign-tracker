@@ -1,7 +1,7 @@
 "use client";
 import { Roboto } from "next/font/google";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { FC, ReactNode, createContext, useState } from "react";
+import { FC, ReactNode, createContext, useEffect, useState } from "react";
 import theme, { ThemeMode } from "@/theme";
 import { getUserTheme, setTheme } from "../api/client-actions";
 
@@ -13,8 +13,12 @@ export const CustomThemeContext = createContext({
 export const CustomThemeContextProvider: FC<{ children: ReactNode[] }> = ({
   children,
 }) => {
-  const userTheme = getUserTheme();
-  const [currentTheme, setCurrentTheme] = useState<ThemeMode>(userTheme);
+  const [currentTheme, setCurrentTheme] = useState<ThemeMode>("dark");
+
+  useEffect(() => {
+    const userTheme = getUserTheme();
+    setCurrentTheme(userTheme);
+  }, []);
 
   const themeSwitchHandler = (themeMode: ThemeMode) => {
     setCurrentTheme(themeMode);

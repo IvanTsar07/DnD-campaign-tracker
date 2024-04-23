@@ -5,7 +5,7 @@ import HeroItem from "./components/common/hero-item";
 import classes from "./page.module.css";
 import { Typography } from "@mui/material";
 
-const DashboardPage = async () => {
+const DashboardPage = () => {
   return (
     <>
       <h3 style={{ textAlign: "center", marginBottom: "48px", fontSize: 32 }}>

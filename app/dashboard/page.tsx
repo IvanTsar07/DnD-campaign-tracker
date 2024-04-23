@@ -1,14 +1,14 @@
-import Image from "next/image";
-import { HERO_DATA } from "./hero-data";
-import HeroItem from "./components/common/hero-item";
+// import Image from "next/image";
+// import { HERO_DATA } from "./hero-data";
+// import HeroItem from "./components/common/hero-item";
 
-import classes from "./page.module.css";
-import { Typography } from "@mui/material";
+// import classes from "./page.module.css";
+// import { Typography } from "@mui/material";
 
 const DashboardPage = () => {
   return (
     <>
-      <h3 style={{ textAlign: "center", marginBottom: "48px", fontSize: 32 }}>
+      {/* <h3 style={{ textAlign: "center", marginBottom: "48px", fontSize: 32 }}>
         Вітаємо в кампанії &quot;Справи баронські&quot;!
       </h3>
 
@@ -45,7 +45,8 @@ const DashboardPage = () => {
             );
           })}
         </div>
-      </section>
+      </section> */}
+      Dash
     </>
   );
 };

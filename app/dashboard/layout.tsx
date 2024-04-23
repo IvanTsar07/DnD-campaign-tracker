@@ -1,4 +1,4 @@
-import LayoutGrid from "@/dashboard/components/layout";
+//import LayoutGrid from "@/dashboard/components/layout";
 
 export default function DashboardLayout({
   children, // will be a page or nested layout
@@ -7,7 +7,8 @@ export default function DashboardLayout({
 }) {
   return (
     <section>
-      <LayoutGrid>{children}</LayoutGrid>
+      {/* <LayoutGrid>{children}</LayoutGrid> */}
+      {children}
     </section>
   );
 }

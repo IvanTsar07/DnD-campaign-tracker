@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { HERO_DATA } from "./hero-data";
-import HeroItem from "./components/common/hero-item";
+// import HeroItem from "./components/common/hero-item";
 
 import classes from "./page.module.css";
 
@@ -33,7 +33,7 @@ const DashboardPage = () => {
         </h4>
 
         <div style={{ margin: "0 auto" }}>
-          {HERO_DATA.map((hero, idx) => {
+          {/* {HERO_DATA.map((hero, idx) => {
             return (
               <HeroItem
                 key={hero.name}
@@ -41,7 +41,7 @@ const DashboardPage = () => {
                 hero={hero}
               />
             );
-          })}
+          })} */}
         </div>
       </section>
     </>

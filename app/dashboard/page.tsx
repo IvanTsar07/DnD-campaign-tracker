@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 // import { HERO_DATA } from "./hero-data";
 // import HeroItem from "./components/common/hero-item";
 
@@ -8,7 +8,7 @@
 const DashboardPage = () => {
   return (
     <>
-      {/* <h3 style={{ textAlign: "center", marginBottom: "48px", fontSize: 32 }}>
+      <h3 style={{ textAlign: "center", marginBottom: "48px", fontSize: 32 }}>
         Вітаємо в кампанії &quot;Справи баронські&quot;!
       </h3>
 
@@ -20,7 +20,7 @@ const DashboardPage = () => {
           height={500}
         />
       </div>
-
+      {/* 
       <section className={classes.campaignHeroesContainer}>
         <Typography
           variant="h4"
@@ -46,7 +46,6 @@ const DashboardPage = () => {
           })}
         </div>
       </section> */}
-      Dash
     </>
   );
 };

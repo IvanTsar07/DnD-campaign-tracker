@@ -160,7 +160,7 @@ export async function updateArtefact(
   try {
     const docRef = doc(db, "artefacts", id);
     await updateDoc(docRef, {
-      // ...artefact,
+      ...artefact,
       modified_at: Date.now(),
     });
 

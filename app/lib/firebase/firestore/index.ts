@@ -7,6 +7,7 @@ import {
   addDoc,
   doc,
   getDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 import { db } from "../firebase";
@@ -128,6 +129,48 @@ export async function getArtefacts(filters = {}): Promise<ArtefactModel[]> {
   });
 }
 
+export async function getArtefact(artId: string): Promise<ArtefactModel> {
+  const docRef = doc(db, "artefacts", artId);
+
+  try {
+    const artefact = await getDoc(docRef);
+
+    console.log(artefact);
+
+    if (!artefact) {
+      redirect("/not-found");
+    }
+
+    return {
+      id: artefact.id,
+      ...(artefact.data() as ArtefactModelInput),
+      createdAt: new Date(artefact.data()!.created_at).toDateString(),
+      modifiedAt: new Date(artefact.data()!.modified_at).toDateString(),
+    };
+  } catch (e) {
+    console.error("Error getting document: ", e);
+    redirect("/not-found");
+  }
+}
+
+export async function updateArtefact(
+  id: string,
+  artefact: ArtefactModelInput
+): Promise<void> {
+  try {
+    const docRef = doc(db, "artefacts", id);
+    await updateDoc(docRef, {
+      // ...artefact,
+      modified_at: Date.now(),
+    });
+
+    revalidatePath("/dashboard/loot");
+    redirect("/dashboard/loot");
+  } catch (e) {
+    console.error("Error updating document: ", e);
+  }
+}
+
 export async function createArtefact(
   artefact: ArtefactModelInput
 ): Promise<string | null> {
@@ -138,7 +181,7 @@ export async function createArtefact(
       modified_at: Date.now(),
     });
 
-    revalidatePath("/meals");
+    revalidatePath("/dashboard/loot");
 
     return docRef.id;
   } catch (e) {

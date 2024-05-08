@@ -1,12 +1,27 @@
 "use client";
 
+import useAuth from "@/lib/hooks/useAuth";
 import { ArtefactModel } from "@/models/artefact";
-import { InsertLink, OpenInNew } from "@mui/icons-material";
-import { TableRow, TableCell } from "@mui/material";
+import { Edit, InsertLink, MoreVert, OpenInNew } from "@mui/icons-material";
+import {
+  TableRow,
+  TableCell,
+  IconButton,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import Link from "next/link";
-import { FC } from "react";
+import { useRouter } from "next/navigation";
+import { FC, useRef, useState } from "react";
 
 const Row: FC<{ row: ArtefactModel }> = ({ row }) => {
+  const [open, setOpen] = useState(false);
+  const { user } = useAuth();
+  const router = useRouter();
+  const anchorRef = useRef(null);
+
   return (
     <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
       <TableCell align="center">
@@ -38,6 +53,41 @@ const Row: FC<{ row: ArtefactModel }> = ({ row }) => {
       >
         {row.tuning ? <InsertLink /> : ""}
       </TableCell>
+      {user && (
+        <TableCell style={{ position: "relative" }}>
+          <IconButton
+            aria-label="more"
+            id="long-button"
+            aria-controls={open ? "long-menu" : undefined}
+            aria-expanded={open ? "true" : undefined}
+            aria-haspopup="true"
+            onClick={() => setOpen(true)}
+            ref={anchorRef}
+          >
+            <MoreVert />
+          </IconButton>
+          <Menu
+            anchorEl={anchorRef.current}
+            id="long-menu"
+            MenuListProps={{
+              "aria-labelledby": "long-button",
+            }}
+            open={open}
+            onClose={() => setOpen(false)}
+          >
+            <MenuItem
+              onClick={() => {
+                router.push(`/dashboard/loot/edit?id=${row.id}`);
+              }}
+            >
+              <ListItemIcon>
+                <Edit />
+              </ListItemIcon>
+              <ListItemText>Edit</ListItemText>
+            </MenuItem>
+          </Menu>
+        </TableCell>
+      )}
     </TableRow>
   );
 };

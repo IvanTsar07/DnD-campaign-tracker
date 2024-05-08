@@ -3,6 +3,7 @@
 import { TableHead, TableRow, TableSortLabel, useTheme } from "@mui/material";
 import StyledTableCell from "./table-styled-cell";
 import React, { FC } from "react";
+import useAuth from "@/lib/hooks/useAuth";
 
 type Order = "asc" | "desc";
 
@@ -27,6 +28,7 @@ const TableHeadComponent: FC<TableHeadProps> = ({
   rowCount,
 }) => {
   const theme = useTheme();
+  const { user } = useAuth();
 
   const createSortHandler =
     (property: "name" | "source" | "owner" | "tuning") =>
@@ -66,6 +68,7 @@ const TableHeadComponent: FC<TableHeadProps> = ({
         >
           Tuning
         </StyledTableCell>
+        {user && <StyledTableCell align="right"></StyledTableCell>}
       </TableRow>
     </TableHead>
   );
